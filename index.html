@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realer</title>
+
+
+
+
+</head>
+<body>
+
+
+    <input type="search" name="" id="search_bar">
+    <button id="search_btn">Search</button>
+
+    <div id="card_container">
+
+    </div>
+    
+
+
+    <script>
+        const search_bar = document.getElementById("search_bar");
+        const search_btn = document.getElementById("search_btn");
+
+        search_btn.addEventListener("click", () => {
+
+            fetch('https://fakestoreapi.com/products')
+            .then(res=>res.json())
+            .then(json=>render_cards(json))
+
+        });
+
+
+
+
+
+        function render_cards(products) {
+            products.forEach(product => {
+                render_card(product);
+            });
+        }
+
+        function render_card(product) {
+            const card = `
+            <div>
+                <img src="${product.image}" alt="Image for ${product.title}">
+                <h1>Title: ${product.title}</h1>
+                <p>Desc: ${product.description}</p>
+                <p>ID: ${product.id}</p>
+                <p>Price: ${product.price}</p>
+                <p>Rating: ${product.rating}</p>
+                <p>Category: ${product.category}</p>
+            </div>
+            `
+            const card_container = document.getElementById("card_container");
+            card_container.innerHTML += card;
+        }
+  
+    </script>
+    
+</body>
+</html>
