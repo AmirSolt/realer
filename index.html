@@ -26,22 +26,56 @@
         const search_bar = document.getElementById("search_bar");
         const search_btn = document.getElementById("search_btn");
 
-        search_btn.addEventListener("click", () => {
+        search_btn.addEventListener("click", async () => {
+            let query = search_bar.value;
+            console.log(query);
 
-            fetch('https://fakestoreapi.com/products')
-            .then(res=>res.json())
-            .then(json=>render_cards(json))
+
+
+            let products = await fetch_products();
+
+            let [] = await Promise.all([
+                fetch_realer(products).then(realer => {
+                    render_realer(realer);
+                }),
+                render_cards(products)
+            ]);
+           
+
 
         });
 
 
+        async function fetch_realer(products) {
+            console.log("fetching realer ... ");
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            console.log("fetched realer ... ");
+            return [];
+        }
+
+        async function render_realer(realer) {
+            console.log("rendering realer ... ");
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            console.log("rendered realer ... ");
+            return [];
+        }
+
+        async function fetch_products() {
+            console.log("fetching products ... ");
+            const response = await fetch('https://fakestoreapi.com/products');
+            const products = await response.json();
+            console.log("fetched products ... ");
+            return products;
+        }
 
 
-
-        function render_cards(products) {
+        async function render_cards(products) {
+            console.log("rendering products ... ");
             products.forEach(product => {
                 render_card(product);
             });
+            console.log("rendered products ... ");
+
         }
 
         function render_card(product) {
