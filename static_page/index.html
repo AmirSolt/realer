@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realer</title>
+
+
+
+
+</head>
+<body>
+
+
+
+    
+    <form id="search-form" class="">
+        <label class=" relative ">
+            <input
+                id="search-bar"
+                class=""
+                type="text"
+                placeholder="Search"
+                value = ""
+            />
+            <input type="submit">
+        </label>
+    </form>
+    
+
+    <script>
+        
+        const search_bar = document.querySelector('#search-bar');
+        const deals_code = "p_n_deal_type%3A23565506011";
+        const country = "";
+        const ref_code = "";
+
+        document.getElementById("search-form").addEventListener("submit", (e)=>{
+            e.preventDefault();
+            // open in new tab
+            window.open(`https://www.amazon.ca/s?k=${search_bar.value}&rh=${deals_code}`, '_blank');
+        })
+    </script>
+
+
+</body>
+</html>
